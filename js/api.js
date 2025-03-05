@@ -3,16 +3,20 @@ const app = express();
 const axios = require("axios");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const port = 277;
+const port = 1024;
 
 app.use(cors());
 app.use(bodyParser.json());
 
 const getData = async (provincia) => {
-  const respuesta = await axios(
-    `https://www.el-tiempo.net/api/json/v2/provincias/${provincia}/municipios`
-  );
-  return respuesta.data.municipios;
+  try {
+    const respuesta = await axios(
+      `https://www.el-tiempo.net/api/json/v2/provincias/${provincia}/municipios`
+    );
+    return respuesta.data.municipios;
+  } catch (e) {
+    console.log(e);
+  }
 };
 const getDataMunicipios = async (provincia, municipios) => {
   const respuesta = await axios(
@@ -34,25 +38,34 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/todosDatos", async (req, res) => {
-  const { provinciaBusqueda, municipioBusqueda } = req.body;
-  const municipio = "".concat(
-    municipioBusqueda[0],
-    municipioBusqueda[1],
-    municipioBusqueda[2],
-    municipioBusqueda[3],
-    municipioBusqueda[4]
-  );
+  try {
+    const { provinciaBusqueda, municipioBusqueda } = req.body;
+    const municipio = "".concat(
+      municipioBusqueda[0],
+      municipioBusqueda[1],
+      municipioBusqueda[2],
+      municipioBusqueda[3],
+      municipioBusqueda[4]
+    );
 
-  const datos = await getDataMunicipios(provinciaBusqueda, municipio);
-  console.log(datos);
-  res.send(datos);
+    const datos = await getDataMunicipios(provinciaBusqueda, municipio);
+    console.log(datos);
+    res.send(datos);
+  } catch (e) {
+    console.log(e);
+  }
 });
 app.post("/idProvincia", async (req, res) => {
-  const { cd } = req.body;
-  const datos = await getData(cd);
+  try {
+    const { cd } = req.body;
+    const datos = await getData(cd);
 
-  res.send(datos);
+    res.send(datos);
+  } catch (e) {
+    console.log(e);
+  }
 });
+
 app.listen(port, () => {
   console.log("listening...");
 });

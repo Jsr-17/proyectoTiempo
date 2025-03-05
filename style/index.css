@@ -346,8 +346,7 @@
 .navbar {
   background-color: #0887a7;
   margin: 18px;
-  border-radius: 3%;
-  border: #3f85a8 solid 3px;
+  border: solid 3px;
 }
 
 .navbar-toggler {
@@ -362,7 +361,7 @@
   color: #03eaff !important;
 }
 .border-primary {
-  border-color: #0887a7 !important;
+  border-color: #065e74 !important;
 }
 body {
   background-color: #22cada;
@@ -373,9 +372,23 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70%;
+  width: 80%;
 }
 .btn-primary {
   background-color: #0887a7;
   border-color: #041750;
+}
+.bg-primary {
+  background-color: #0887a7 !important;
+}
+.hero {
+  height: 85vh;
+}
+
+.carta {
+  width: 300px;
+  height: 400px;
+  background-color: #0aceffea;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
