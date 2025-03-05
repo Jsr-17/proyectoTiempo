@@ -386,9 +386,12 @@ body {
 }
 
 .carta {
-  width: 300px;
-  height: 400px;
+  max-width: min-content;
+  height: min-content;
   background-color: #0aceffea;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
+}
+#contenedorProximasHoras {
+  width: min-content;
 }

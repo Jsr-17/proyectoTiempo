@@ -140,7 +140,7 @@ const postDatos = async () => {
 
         <section class="container-fluid bg-primary border-primary overflow-auto" >
       <div id ="contenedorProximasHoras" class="d-flex justify-content-center align-items-center">
-      //expresion de javascript
+      
       </div>
     </section>
     
@@ -152,69 +152,29 @@ const postDatos = async () => {
       "#contenedorProximasHoras"
     );
     for (let index = 0; index < hoy.temperatura.length; index++) {
-      // Asegúrate de que la hora no exceda las 24 horas
-      let sumahora = (hora + index) % 24; // Esto asegura que el valor de sumahora esté entre 0 y 23
-      console.log(sumahora);
+      let sumahora = (hora + index) % 24;
 
-      // Crear los elementos de la carta
-      const cartaContainer = document.createElement("div");
-      cartaContainer.classList.add("container", "p-4");
-
-      const carta = document.createElement("div");
-      carta.classList.add(
-        "carta",
-        "rounded",
-        "border",
-        "border-3",
-        "border-primary",
-        "d-flex",
-        "justify-content-center",
-        "align-items-center"
-      );
-
-      const cartaContent = document.createElement("div");
-
-      const horaRow = document.createElement("div");
-      horaRow.classList.add("row", "my-3");
-      const horaHeading = document.createElement("h1");
-      horaHeading.textContent = sumahora;
-      horaRow.appendChild(horaHeading);
-
-      const imagenRow = document.createElement("div");
-      imagenRow.classList.add("row", "my-3");
-      imagenRow.textContent = "imagen";
-
-      const tempRow = document.createElement("div");
-      tempRow.classList.add("row", "my-3");
-      const tempHeading = document.createElement("h4");
-      tempHeading.textContent = `Temperatura: ${hoy.temperatura[index]}°C`;
-      tempRow.appendChild(tempHeading);
-
-      const percRow = document.createElement("div");
-      percRow.classList.add("row", "my-3");
-      const percHeading = document.createElement("h4");
-      percHeading.textContent = `Porcentaje: ${hoy.precipitacion[index]}%`;
-      percRow.appendChild(percHeading);
-
-      const vientoRow = document.createElement("div");
-      vientoRow.classList.add("row", "my-3");
-      const vientoHeading = document.createElement("h4");
-      vientoHeading.textContent = `Viento: ${hoy.viento[index].velocidad} km/h`;
-      vientoRow.appendChild(vientoHeading);
-
-      // Agregar todas las filas a la carta
-      cartaContent.appendChild(horaRow);
-      cartaContent.appendChild(imagenRow);
-      cartaContent.appendChild(tempRow);
-      cartaContent.appendChild(percRow);
-      cartaContent.appendChild(vientoRow);
-
-      // Agregar la carta al contenedor
-      carta.appendChild(cartaContent);
-      cartaContainer.appendChild(carta);
-
-      // Agregar la carta al contenedor principal
-      contenedorProximasHoras.appendChild(cartaContainer);
+      contenedorProximasHoras.innerHTML += `
+        <div class="container p-4 ">
+          <div class="carta rounded border border-3 border-primary d-flex justify-content-center align-items-center">
+            <div>
+              <div class="row my-3">
+                <h1>${sumahora}</h1>
+              </div>
+              <div class="row my-3">imagen</div>
+              <div class="row my-3">
+                <h4>Temperatura: ${hoy.temperatura[index]}°C</h4>
+              </div>
+              <div class="row my-3">
+                <h4>Porcentaje: ${hoy.precipitacion[index]}%</h4>
+              </div>
+              <div class="row my-3">
+                <h4>Viento: ${hoy.viento[index].velocidad} km/h</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
     }
   } catch (error) {
     console.log(error);
