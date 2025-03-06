@@ -382,16 +382,19 @@ body {
   background-color: #0887a7 !important;
 }
 .hero {
-  height: 85vh;
+  height: max-content;
 }
 
 .carta {
   max-width: min-content;
   height: min-content;
-  background-color: #0aceffea;
+  background-color: #399cb5ea;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 #contenedorProximasHoras {
+  width: min-content;
+}
+#contenedorProximosDias {
   width: min-content;
 }
